@@ -9,9 +9,15 @@ All you need to do is to go to background.js and replace the PUT_YOUR_KEY with a
 You can find here: https://aistudio.google.com/app/apikey
 <br>
 <br>
+## Changing the model
 Still on hackground.js, where you can change the model type. Here's how:
-&nbsp &nbsp &nbsp &nbsp const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
-
+Go to this part of the code:
+GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 
 # Example headings
