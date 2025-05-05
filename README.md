@@ -1,6 +1,6 @@
 # Ask Gemini
 
-This is a simple extension where you can right-click to ask Gemini questions about highlighted text or general queries
+This is a simple extension where you can right-click to ask Gemini questions about highlighted text or general queries  
 <br>
 <br>
 ## API Key
