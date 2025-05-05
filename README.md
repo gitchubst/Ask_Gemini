@@ -17,29 +17,4 @@ GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini
 ```
 Notice where it says "gemini-2.5-flash-preview-04-17"
 Replace that with a model of your choice
-You can find them here: Link to the helpful section: [Link Text](https://ai.google.dev/gemini-api/docs/models)
-
-# Example headings
-
-## Sample Section
-
-## This'll be a _Helpful_ Section About the Greek Letter Θ!
-A heading containing characters not allowed in fragments, UTF-8 characters, two consecutive spaces between the first and second words, and formatting.
-
-## This heading is not unique in the file
-
-TEXT 1
-
-## This heading is not unique in the file
-
-TEXT 2
-
-# Links to the example headings above
-
-Link to the sample section: [Link Text](#sample-section).
-
-Link to the helpful section: [Link Text](#thisll-be-a-helpful-section-about-the-greek-letter-Θ).
-
-Link to the first non-unique section: [Link Text](#this-heading-is-not-unique-in-the-file).
-
-Link to the second non-unique section: [Link Text](#this-heading-is-not-unique-in-the-file-1).
+You can find them here: Link to the helpful section: [Hi](https://ai.google.dev/gemini-api/docs/models)
