@@ -1,6 +1,13 @@
 # Ask Gemini
 
-This is a simple extension where you can right-click to ask Gemini questions about highlighted text or general queries    
+This is a simple extension where you can right-click to ask Gemini questions about highlighted text or general queries
+
+
+
+
+
+
+
 ## API Key
 All you need to do is to go to background.js and replace the PUT_YOUR_KEY with an your API key
 <br>
