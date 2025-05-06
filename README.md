@@ -18,6 +18,12 @@ Replace that with a model of your choice. Here are the options:
 ```
 gemini-2.5-flash-preview-04-17
 ```
+```
+gemini-2.0-flash
+```
+```
+gemini-1.5-flash
+```
 
 2. 
 You can find them here: Link to the helpful section: [Gemini Models](https://ai.google.dev/gemini-api/docs/models)  
