@@ -2,7 +2,7 @@
 This is a simple extension where you can right-click to ask Gemini questions about highlighted text or general queries <br><br><br>
 
 ## API Key
-All you need to do is to go to background.js and replace the PUT_YOUR_KEY with an your API key
+All you need to do is to go to background.js and replace the PUT_YOUR_KEY with your API key
 <br>
 You can find it here: [Gemini API Key](https://aistudio.google.com/app/apikey)
 <br>
