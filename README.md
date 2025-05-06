@@ -13,18 +13,7 @@ Go to this part of the code:
 ```
 GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
 ```
-Notice where it says "gemini-2.5-flash-preview-04-17"<br><br>
-Replace that with a model of your choice. Here are the options:
-```
-gemini-2.5-flash-preview-04-17
-```
-```
-gemini-2.0-flash
-```
-```
-gemini-1.5-flash
-```
-
-2. 
-You can find them here: Link to the helpful section: [Gemini Models](https://ai.google.dev/gemini-api/docs/models)  
-Make sure that you enter the second, black part of the model variant
+Notice where it says "gemini-2.5-flash-preview-04-17"  
+Replace that with a model of your choice.  
+You can find more here: [Gemini Models](https://ai.google.dev/gemini-api/docs/models)  
+Make sure that you enter the second, black part of the model variant with the dashes. Only copy and paste that part into the URL
