@@ -15,7 +15,7 @@ GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini
 ```
 Notice where it says "gemini-2.5-flash-preview-04-17"  
 Replace that with a model of your choice. Here are the options:  
-&nbsp;&nbsp;&nbsp;&nbsp;1. gemini-2.5-flash-preview-04-17
+&nbsp;&nbsp;&nbsp;&nbsp;1.       gemini-2.5-flash-preview-04-17
 2. 
 You can find them here: Link to the helpful section: [Gemini Models](https://ai.google.dev/gemini-api/docs/models)  
 Make sure that you enter the second, black part of the model variant
