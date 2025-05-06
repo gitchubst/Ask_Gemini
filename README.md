@@ -1,13 +1,13 @@
 # Ask Gemini
 This is a simple extension where you can right-click to ask Gemini questions about highlighted text or general queries <br><br><br>
 
-### API Key
-All you need to do is to go to background.js and replace the PUT_YOUR_KEY with your API key
+## API Key
+Go to background.js and replace the PUT_YOUR_KEY with your API key
 <br>
 You can find it here: [Gemini API Key](https://aistudio.google.com/app/apikey)
 <br>
 <br>
-### Changing the model
+## Changing the model
 Still on hackground.js, where you can change the model type. Here's how:
 Go to this part of the code:
 ```
