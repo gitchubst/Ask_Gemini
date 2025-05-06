@@ -11,7 +11,7 @@ Go to background.js and replace the PUT_YOUR_KEY with your API key. You can find
 <br>
 
 ## Changing the model
-Still on hackground.js, where you can change the model type. Here's how:
+Still on hackground.js, where you can change the model type. Here's how:  
 Go to this part of the code:
 ```
 GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
