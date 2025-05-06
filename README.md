@@ -13,7 +13,7 @@ Go to this part of the code:
 ```
 GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
 ```
-Notice where it says "gemini-2.5-flash-preview-04-17"<br><br>
+Notice where it says "gemini-2.5-flash-preview-04-17"
 Replace that with a model of your choice. Here are the options:<br><br>
 &nbsp; &nbsp; &nbsp; &nbsp; 1. &nbsp; gemini-2.5-flash-preview-04-17
 2. 
