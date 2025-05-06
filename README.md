@@ -14,5 +14,5 @@ Go to this part of the code:
 GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
 ```
 Notice where it says "gemini-2.5-flash-preview-04-17"<br><br>
-Replace that with a model of your choice. You can find more here: [Gemini Models](https://ai.google.dev/gemini-api/docs/models)<br><br>
-Make sure that you enter the second, black part of the model variant with the dashes. Only copy and paste that part into the URL
+Replace that with a model of your choice. You can find more here: [Gemini Models](https://ai.google.dev/gemini-api/docs/models)<br><br>.
+Make sure that you enter the second, black part of the model variant with the dashes. Only copy and paste that part into the URL.
