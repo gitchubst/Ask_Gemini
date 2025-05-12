@@ -17,7 +17,10 @@ Go to background.js and replace the PUT_YOUR_KEY with your API key. You can find
 <br>
 
 ## Loading the Extension
-Go 
+Go back to google chrome now and on the right side of the page, right next to your profile (on the same line as the search bar), click the three dots. Now, look down until you hover over "Extensions" and click "Manage Extensions". Turn on developer mode on the right corner if its not already on. Now, you should see 3 buttons appear, one of which is "Load unpacked". Click on that and select the folder (Ask_Gemini-main) that has the files for Ask Gemini. Once you've clicked that, it should say "extension loaded", where all you need to do now is reload any page and the extension should work.
+
+## How to Use Ask Gemini
+Right click anything and a default dropdown shoudl appear, bellow, in your extensions on that dropdown should be something called Ask Gemini. Click on that and it should open a popup. You will be shown your highlighted text in the popup. For "Your Question/Input", just put anything you want there and press enter. The input you type will be added on to the higlighted section and Gemini will answer bellow. If you're too lazy to type, just click "Summarize", "Explain", or "Answer", and that will replace whtever is in the "Your Question/Input" space. On the bottom right of the popup, you can resize it to make it larger or smaller.
 
 ## Changing the model (Optional)
 Skip this step if you don't want to change the model. Open background.js, where you can change the model type. Here's how. Go to this part of the code:
