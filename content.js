@@ -24,7 +24,7 @@ function createGeminiPopup(selectedText) {
       ${currentSelectedText ? `<div id="gemini-selected-text-display"><b>Highlighted:</b><p>${escapeHtml(currentSelectedText.substring(0, 200))}${currentSelectedText.length > 200 ? '...' : ''}</p></div>` : ''}
       <div id="gemini-input-area">
         <label for="gemini-question-input">Your Question/Input:</label>
-        <textarea id="gemini-question-input" rows="3" placeholder="Type a question and press enter"></textarea>
+        <textarea id="gemini-question-input" rows="3" placeholder="Type something and press enter"></textarea>
         <div id="gemini-preset-buttons">
           <button data-prompt="Summarize">Summarize</button>
           <button data-prompt="Explain">Explain</button>
