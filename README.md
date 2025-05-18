@@ -32,7 +32,5 @@ Right click anything and a default dropdown shoudl appear, bellow, in your exten
 
 ## Changing the model (Optional)
 Skip this step if you don't want to change the model. Open background.js, where you can change the model type. Here's how. Go to this part of the code:
-```
-GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
-```
-Notice where it says _gemini-2.5-flash-preview-04-17_. Replace that with a model of your choice. You can find more here: [Gemini Models](https://ai.google.dev/gemini-api/docs/models). Make sure that you enter the second, black part of the model variant with the dashes. Only copy and paste that part into the URL.
+
+Notice where it says _const VERSION = "gemini-2.0-flash";_. Replace the text in the double quotes with a model of your choice. You can find more here: [Gemini Models](https://ai.google.dev/gemini-api/docs/models). Make sure that you enter the second, black part of the model variant with the dashes. Only copy and paste that part into the URL. Make sure you follow the same formatting as in the code.
