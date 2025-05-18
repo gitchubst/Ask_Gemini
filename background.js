@@ -1,5 +1,7 @@
 const GEMINI_API_KEY = "PUT_YOUR_KEY";
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`;
+const VERSION = "gemini-2.0-flash";
+
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${VERSION}:generateContent?key=${GEMINI_API_KEY}`;
 
 function setupContextMenu() {
   chrome.contextMenus.create({
