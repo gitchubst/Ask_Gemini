@@ -1,21 +1,14 @@
-console.log("Gemini content script loaded");
-
 let geminiPopup = null;
 let lastMouseX = 0;
 let lastMouseY = 0;
 let currentSelectedText = "";
-
 let isDragging = false;
 let offsetX = 0;
 let offsetY = 0;
 
-
 function createGeminiPopup(selectedText) {
   removeGeminiPopup();
-
-  console.log("Creating Gemini popup.");
   currentSelectedText = selectedText || "";
-
   geminiPopup = document.createElement('div');
   geminiPopup.id = 'gemini-popup-container';
   geminiPopup.style.position = 'absolute';
@@ -51,16 +44,26 @@ function createGeminiPopup(selectedText) {
   const header = geminiPopup.querySelector('#gemini-popup-header');
   const closeButton = geminiPopup.querySelector('#gemini-popup-close');
   const inputField = geminiPopup.querySelector('#gemini-question-input');
+  const presetButtonsContainer = geminiPopup.querySelector('#gemini-preset-buttons');
   const presetButtons = geminiPopup.querySelectorAll('#gemini-preset-buttons button');
   const responseArea = geminiPopup.querySelector('#gemini-response-content');
   const loadingIndicator = geminiPopup.querySelector('#gemini-loading');
 
   closeButton.addEventListener('click', removeGeminiPopup);
 
+  if (presetButtonsContainer) {
+    presetButtonsContainer.style.justifyContent = 'center';
+  }
+
   presetButtons.forEach(button => {
+    button.style.display = 'flex';
+    button.style.alignItems = 'center';
+    button.style.justifyContent = 'center';
+    button.style.paddingLeft = '16px';
+    button.style.paddingRight = '16px';
+    button.style.minWidth = '90px';
     button.addEventListener('click', () => {
       const prompt = button.getAttribute('data-prompt');
-      console.log(`Preset button clicked: ${prompt}`);
       inputField.value = '';
       responseArea.textContent = '';
       loadingIndicator.style.display = 'block';
@@ -74,12 +77,9 @@ function createGeminiPopup(selectedText) {
       event.preventDefault();
       const prompt = inputField.value.trim();
       if (prompt) {
-        console.log(`Custom question submitted via Enter: ${prompt}`);
         responseArea.textContent = '';
         loadingIndicator.style.display = 'block';
         callGemini(prompt, currentSelectedText);
-      } else {
-         console.log("Enter pressed with empty input");
       }
     }
   });
@@ -102,32 +102,22 @@ function createGeminiPopup(selectedText) {
     }
   });
 
-
   header.addEventListener('mousedown', (e) => {
-    if (e.target === closeButton) return;
-
+    if (e.target === closeButton || e.target.parentElement === closeButton) return;
     isDragging = true;
     offsetX = e.clientX - geminiPopup.getBoundingClientRect().left;
     offsetY = e.clientY - geminiPopup.getBoundingClientRect().top;
     geminiPopup.style.cursor = 'grabbing';
     header.style.cursor = 'grabbing';
-    console.log("Dragging started");
-
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   });
-
-  setTimeout(() => {
-      document.addEventListener('click', handleClickOutside, true);
-  }, 0);
 }
 
 function handleMouseMove(e) {
   if (!isDragging || !geminiPopup) return;
-
   let newX = e.clientX - offsetX;
   let newY = e.clientY - offsetY;
-
   geminiPopup.style.left = `${newX}px`;
   geminiPopup.style.top = `${newY}px`;
 }
@@ -142,16 +132,12 @@ function handleMouseUp() {
         header.style.cursor = 'grab';
       }
   }
-  console.log("Dragging stopped");
-
   document.removeEventListener('mousemove', handleMouseMove);
   document.removeEventListener('mouseup', handleMouseUp);
 }
 
-
 function removeGeminiPopup() {
   if (geminiPopup) {
-    console.log("Removing Gemini popup.");
     if (isDragging) {
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
@@ -159,17 +145,8 @@ function removeGeminiPopup() {
     }
     geminiPopup.remove();
     geminiPopup = null;
-    document.removeEventListener('click', handleClickOutside, true);
   }
 }
-
-function handleClickOutside(event) {
-    if (geminiPopup && !geminiPopup.contains(event.target) && !isDragging) {
-        console.log("Clicked outside popup. Closing.");
-        removeGeminiPopup();
-    }
-}
-
 
 function positionPopup(x, y) {
   if (!geminiPopup) return;
@@ -200,17 +177,13 @@ function positionPopup(x, y) {
   }
    if (left < scrollX + buffer) left = scrollX + buffer;
 
-
   geminiPopup.style.left = `${left}px`;
   geminiPopup.style.top = `${top}px`;
   geminiPopup.style.visibility = 'visible';
 }
 
-
 function callGemini(prompt, contextText) {
-  console.log("Sending request to background script");
   const safeContextText = contextText || "";
-
   chrome.runtime.sendMessage({
       type: "CALL_GEMINI_API",
       prompt: prompt,
@@ -218,7 +191,6 @@ function callGemini(prompt, contextText) {
     },
     (response) => {
       if (!geminiPopup) {
-          console.log("Popup closed before response received");
           return;
       }
       const loadingIndicator = geminiPopup.querySelector('#gemini-loading');
@@ -227,21 +199,17 @@ function callGemini(prompt, contextText) {
       if (loadingIndicator) loadingIndicator.style.display = 'none';
 
       if (!responseArea) {
-          console.error("Response area not found in the popup");
           return;
       }
 
       if (chrome.runtime.lastError) {
-        console.error("Messaging error:", chrome.runtime.lastError.message);
         responseArea.textContent = `Error: ${chrome.runtime.lastError.message}`;
         responseArea.classList.add('gemini-error');
       } else if (response && response.success) {
-        console.log("Received success response from background:", response.response);
         responseArea.innerHTML = escapeHtml(response.response).replace(/\n/g, '<br>');
         responseArea.classList.remove('gemini-error');
       } else {
         const errorMessage = response ? response.error : "An unknown communication error occurred";
-        console.error("Received error response from background:", errorMessage);
         responseArea.textContent = `Error: ${escapeHtml(errorMessage)}`;
         responseArea.classList.add('gemini-error');
       }
@@ -249,16 +217,13 @@ function callGemini(prompt, contextText) {
   );
 }
 
-
 document.addEventListener('contextmenu', (event) => {
   lastMouseX = event.clientX;
   lastMouseY = event.clientY;
-  console.log(`Context menu opened at viewport coordinates (${lastMouseX}, ${lastMouseY})`);
 }, true);
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === "ASK_GEMINI_CONTEXT_MENU") {
-    console.log("Received message from background script to show popup");
     createGeminiPopup(request.selectedText);
   }
 });
@@ -274,5 +239,3 @@ function escapeHtml(unsafe) {
          .replace(/"/g, "&quot;")
          .replace(/'/g, "&#039;");
  }
-
-console.log("Gemini content script event listeners attached");
