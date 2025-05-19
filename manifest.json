@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Gemini Assistant",
+  "name": "Ask Gemini",
   "version": "1.0",
   "description": "Right-click to ask Gemini questions about highlighted text or general queries",
   "permissions": [
