@@ -13,7 +13,7 @@ Once you download the zip file, make sure to unpack, or open, it.
 
 ## API Key
 In a text editor, open up your files
-Go to background.js and replace the PUT_YOUR_KEY with your API key. You can find it here: [Gemini API Key](https://aistudio.google.com/app/apikey).
+Go to background.js and replace the PUT_YOUR_KEY_HERE with your API key. You can find it here: [Gemini API Key](https://aistudio.google.com/app/apikey).
 <br>
 <br>
 <br>
