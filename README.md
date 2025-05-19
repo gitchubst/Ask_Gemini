@@ -29,8 +29,12 @@ Right click anything and a default dropdown shoudl appear, bellow, in your exten
 <br>
 <br>
 <br>
-## Temperature
-Range: 0.0 to 1.0 (inclusive)
 
 ## Changing the model (Optional)
 Skip this step if you don't want to change the model. Open background.js, where you can change the model type. Here's how. Go to where where it says _const VERSION = "gemini-2.0-flash";_. The variable VERSION is at the start of background.js, right bellow the API key. Replace the text in the double quotes with a model of your choice. You can find more here: [Gemini Models](https://ai.google.dev/gemini-api/docs/models). Make sure that you enter the second, black part of the model variant with the dashes. Only copy and paste that part into the URL. Make sure you follow the same formatting as in the code.
+<br>
+<br>
+<br>
+
+## Temperature
+Range: 0.0 to 2.0 (inclusive)
