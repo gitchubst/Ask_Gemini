@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = "AIzaSyAS1XnIzB9RWRDPhUA-RpJ0bLKlSNaiZnA";
+const GEMINI_API_KEY = "PUT_YOUR_KEY";
 const VERSION = "gemini-2.0-flash";
 const TEMPERATURE = 1.0;
 
