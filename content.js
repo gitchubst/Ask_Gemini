@@ -103,21 +103,43 @@ function createGeminiPopup(selectedText) {
   });
 
   header.addEventListener('mousedown', (e) => {
-    if (e.target === closeButton || e.target.parentElement === closeButton) return;
+    if (e.target === closeButton || e.target.parentElement === closeButton || e.button !== 0) return;
+    
     isDragging = true;
-    offsetX = e.clientX - geminiPopup.getBoundingClientRect().left;
-    offsetY = e.clientY - geminiPopup.getBoundingClientRect().top;
+    const rect = geminiPopup.getBoundingClientRect();
+
+    geminiPopup.style.position = 'fixed';
+    geminiPopup.style.left = `${rect.left}px`;
+    geminiPopup.style.top = `${rect.top}px`;
+    geminiPopup.style.margin = '0'; 
+
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
     geminiPopup.style.cursor = 'grabbing';
-    header.style.cursor = 'grabbing';
+    if (header) header.style.cursor = 'grabbing';
+    
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
+    e.preventDefault();
   });
 }
 
 function handleMouseMove(e) {
   if (!isDragging || !geminiPopup) return;
+  
   let newX = e.clientX - offsetX;
   let newY = e.clientY - offsetY;
+
+  const popupRect = geminiPopup.getBoundingClientRect(); 
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  if (newX < 0) newX = 0;
+  if (newX + popupRect.width > viewportWidth) newX = viewportWidth - popupRect.width;
+  if (newY < 0) newY = 0;
+  if (newY + popupRect.height > viewportHeight) newY = viewportHeight - popupRect.height;
+
   geminiPopup.style.left = `${newX}px`;
   geminiPopup.style.top = `${newY}px`;
 }
@@ -152,9 +174,9 @@ function positionPopup(x, y) {
   if (!geminiPopup) return;
 
   geminiPopup.style.visibility = 'hidden';
-  geminiPopup.style.display = 'flex';
+  geminiPopup.style.display = 'flex'; 
   const popupRect = geminiPopup.getBoundingClientRect();
-  geminiPopup.style.display = '';
+  geminiPopup.style.display = ''; 
 
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
@@ -166,10 +188,11 @@ function positionPopup(x, y) {
   if (top < scrollY + buffer) {
       top = y + scrollY + buffer;
   }
+  
   if (top + popupRect.height > scrollY + viewportHeight - buffer) {
       top = scrollY + viewportHeight - popupRect.height - buffer;
-      if (top < scrollY) top = scrollY + buffer;
   }
+  if (top < scrollY + buffer) top = scrollY + buffer;
 
   let left = x + scrollX + buffer;
   if (left + popupRect.width > scrollX + viewportWidth - buffer) {
@@ -206,7 +229,13 @@ function callGemini(prompt, contextText) {
         responseArea.textContent = `Error: ${chrome.runtime.lastError.message}`;
         responseArea.classList.add('gemini-error');
       } else if (response && response.success) {
-        responseArea.innerHTML = escapeHtml(response.response).replace(/\n/g, '<br>');
+        let responseText = response.response;
+        if (typeof responseText === 'string') {
+          responseText = responseText.replace(/\*\*/g, '');
+        } else {
+          responseText = ""; 
+        }
+        responseArea.innerHTML = escapeHtml(responseText).replace(/\n/g, '<br>');
         responseArea.classList.remove('gemini-error');
       } else {
         const errorMessage = response ? response.error : "An unknown communication error occurred";
