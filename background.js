@@ -1,5 +1,6 @@
-const GEMINI_API_KEY = "PUT_YOUR_KEY";
+const GEMINI_API_KEY = "AIzaSyAS1XnIzB9RWRDPhUA-RpJ0bLKlSNaiZnA";
 const VERSION = "gemini-2.0-flash";
+const TEMPERATURE = 1.0;
 
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${VERSION}:generateContent?key=${GEMINI_API_KEY}`;
 
@@ -33,6 +34,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Received request from content script to call Gemini API");
     console.log("Prompt:", request.prompt);
     console.log("Context Text:", request.contextText);
+    console.log("Temperature:", TEMPERATURE);
+
 
     let fullPrompt = request.prompt;
     if (request.contextText && request.contextText.trim() !== "") {
@@ -51,7 +54,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           parts: [{
             text: fullPrompt
           }]
-        }]
+        }],
+        generationConfig: {
+          temperature: TEMPERATURE
+        }
       })
     })
     .then(response => {
