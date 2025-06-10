@@ -6,7 +6,7 @@ A simple extension where you can right-click to ask Gemini questions about highl
 
 ## Downloading
 Go to the green box on the right that says "Code". Once you click on it, look at the bottom of the popup and click "Download ZIP"
-Once you download the zip file, make sure to unpack, or open, it.
+Once you download the zip file, make sure to unpack, or open, it. If you want a video of the setup, then check this [youtube video](https://youtu.be/1JC1XM8UTDM).
 <br>
 <br>
 <br>
